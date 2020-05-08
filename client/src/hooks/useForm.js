@@ -24,5 +24,5 @@ export const useForm = ( key, initialValue) => {
        setValues(initialValue);
   };
 
-  return [values, handleChanges, showSuccessMessage];
+  return [values, handleChanges, clearForm];
 };
