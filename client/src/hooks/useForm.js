@@ -1,25 +1,28 @@
 // write your custom hook here to control your checkout form
 import { useState } from 'react'
-export const useForm = ( initialValue) => {
+export const useForm = ( key, initialValue) => {
   // email value ✅
   // handlechanges should handle all inputs
-  const [showSuccessMes, setShowSuccessMes] = useState(false)
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [values, setValues] = useState(initialValue);
 
-  const handleChanges = (e) => {
+    const handleChanges = (e) => {
+        const name = e.target.name
+        const value = e.target.value
       setValues({
           ...values,
-          [e.target.name]: e.target.value,
+          [name]:value,
     
       });
     };
   
 
 
-//   const clearForm = (e) => {
-//     if (e) e.preventDefault();
-//     setValues(initialValue);
-//   };
+  const clearForm = (e) => {
+      if (e) e.preventDefault();
+       setShowSuccessMessage(true);
+       setValues(initialValue);
+  };
 
-  return [values, handleChanges, showSuccessMes, setShowSuccessMes];
+  return [values, handleChanges, showSuccessMessage];
 };
